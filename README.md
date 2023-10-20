@@ -11,6 +11,7 @@
 
 _Get started using GitHub in less than an hour._
 
+
 </header>
 
 <!--
@@ -21,6 +22,7 @@ _Get started using GitHub in less than an hour._
 ## Finish
 
 _Congratulations, you've completed this course and joined the world of developers!_
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=T-Tcai)](https://github.com/anuraghazra/github-readme-stats)
 
 <img src=https://octodex.github.com/images/collabocats.jpg alt=celebrate width=300 align=right>
 
