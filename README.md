@@ -41,13 +41,11 @@ I am not sure what i will do next, but i know that i will continue learning and 
 print("Hello, World!")
 ```
 
-### Your GitHub stats
+### My GitHub stats
 
 I am not sure what this is, but it is interesting.
 
-
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=T-Tcai)](https://github.com/anuraghazra/github-readme-stats)
-
 
 Here's a recap of your accomplishments:
 
@@ -72,6 +70,7 @@ Check out these resources to learn more or get involved:
 - [Take another GitHub Skills course](https://github.com/skills).
 - [Read the GitHub Getting Started docs](https://docs.github.com/en/get-started).
 - To find projects to contribute to, check out [GitHub Explore](https://github.com/explore).
+
 ### Review what we learned
 
 - **Repositories:** A repository is where you store your project's code. It can be public or private.
@@ -91,7 +90,6 @@ I am not sure what i will do next, but i know that i will continue learning and 
 print("Hello, World!")
 ```
 
-
 <footer>
 
 <!--
@@ -106,5 +104,3 @@ Get help: [Post in our discussion board](https://github.com/orgs/skills/discussi
 &copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
 
 </footer>
-
-
