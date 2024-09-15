@@ -7,7 +7,7 @@
   Add your open source license, GitHub uses MIT license.
 -->
 
-# Introduction to GitHub
+# Introduction
 
 _What can i say._
 
@@ -18,9 +18,32 @@ _What can i say._
   Review what we learned, ask for feedback, provide next steps.
 -->
 
-## Finish
+## BEGIN
 
-_Congratulations, you've completed this course and joined the world of developers!_
+_Congratulations, i am completed this course and joined the world of developers!_
+
+### Review what we learned
+
+- **Repositories:** A repository is where you store your project's code. It can be public or private.
+- **Branches:** Branches are versions of your repository. You can create branches to work on new features or fixes.
+- **Commits:** Commits are saved changes. Each commit has an associated commit message.
+- **Pull requests:** Pull requests propose changes to your repository. Other contributors can review and discuss the proposed changes.
+
+I am very happy to start my journey with this course. I am very excited to learn more about GitHub.
+
+### What we accomplished
+
+I have learned the basics of GitHub and made my first contribution to a repository. I am very happy to start my journey with this course. I am very excited to learn more about GitHub.
+
+I am not sure what i will do next, but i know that i will continue learning and growing as a developer.
+
+```
+print("Hello, World!")
+```
+
+### Your GitHub stats
+
+I am not sure what this is, but it is interesting.
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=T-Tcai)](https://github.com/anuraghazra/github-readme-stats)
 
 <img src=<https://octodex.github.com/images/collabocats.jpg> alt=celebrate width=300 align=right>
@@ -63,3 +86,29 @@ Get help: [Post in our discussion board](https://github.com/orgs/skills/discussi
 &copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
 
 </footer>
+```
+
+### Review what we learned
+
+- **Repositories:** A repository is where you store your project's code. It can be public or private.
+- **Branches:** Branches are versions of your repository. You can create branches to work on new features or fixes.
+- **Commits:** Commits are saved changes. Each commit has an associated commit message.
+- **Pull requests:** Pull requests propose changes to your repository. Other contributors can review and discuss the proposed changes.
+
+I am very happy to start my journey with this course. I am very excited to learn more about GitHub.
+
+### What we accomplished
+
+I have learned the basics of GitHub and made my first contribution to a repository. I am very happy to start my journey with this course. I am very excited to learn more about GitHub.
+
+I am not sure what i will do next, but i know that i will continue learning and growing as a developer.
+
+```
+print("Hello, World!")
+```
+
+### Your GitHub stats
+
+I am not sure what this is, but it is interesting.
+
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=T-Tcai)](
