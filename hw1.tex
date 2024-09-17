@@ -1,0 +1,262 @@
+\documentclass[UTF8]{ctexart}
+\usepackage[ruled, linesnumbered]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{boxedminipage}
+\usepackage{circuitikz}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{fullpage}
+\usepackage{gensymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{mflogo}
+\usepackage{multirow}
+\newcommand{\nop}[1]{}
+\usepackage{siunitx}
+\usepackage{subfigure}
+\usepackage{texnames}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage{xltxtra}
+
+\setlength{\headheight}{0pt}
+\geometry{left=2.5cm,right=2.5cm,headsep=2cm,bottom=2cm,footnotesep=2cm}
+\pagestyle{fancy}
+\fancyfoot[C]{\thepage}
+\fancyhead[L]{计算机科学与技术系}
+\fancyhead[C]{
+    \begin{huge}
+        \textbf{}
+    \end{huge}\\
+    \vspace{0.4cm}
+    \ \ \ \ \ \ \ \ }
+\fancyhead[R]{\ \ \ \ \ \ \ \ \ \ \ \ 2023年10月7日}
+
+\ctexset{
+    section={
+      format+ = \Large \raggedright,
+     }
+}
+
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem{definition}{定义}
+
+\parindent0mm
+%\pagestyle{empty}
+
+\usetikzlibrary{arrows}
+
+\newcounter{aufgc}
+\newenvironment{exercise}[1]%
+{\refstepcounter{aufgc}\textbf{问题 \arabic{aufgc}} \emph{#1} \\}
+{\vspace{0.2cm}}%
+
+\renewcommand{\labelenumi}{(\alph{enumi})}
+
+\begin{document}
+
+\textbf{Q1.}
+
+\textit{解.}
+
+(1) 正确
+\begin{proof}
+    因为 $\forall i\in\mathbb{N}^+,f_i(n)=O(g(n))$，则有
+    $\exists c_i,n_i>0,\forall n>n_i,f_i(n)\leqslant c_{i}g(n)$，
+    令 $n_0=\max\{n_1,n_2,\ldots\}$，
+    有 $\forall n>n_0,f_i(n)\leqslant c_{i}g(n),F_m(n)=\sum_{i=1}^{m}f_i(n)\leqslant\sum_{i=1}^{m}c_{i}g(n)=\left(\sum_{i=1}^{m}c_{i}\right)g(n)$，
+    故 $F_m(n)=O(g(n))$.
+\end{proof}
+
+(2) 错误，反例： $f_i(n)=2n,g(n)=n,f_i(n)=O(g(n)),F(n)=\sum_{i=1}^{n}f_i(n)=n(n-1)\neq O(g(n))$.
+
+(3) 正确，可以取 $g(n)=n^2,f_1(n)=n,f_2(n)=n^{1.1},f_3(n)=n^{1.11},f_4(n)=n^{1.111},\ldots$
+
+(4) 错误，反例： $f(n)=n(1-\sin(n)),g(n)=n(1+\sin(n)),f(n)+g(n)=2n=\Omega(n)$，
+但 $f(n)$ 和 $g(n)$ 因为 $\forall k\in\mathbb{N}^+,f(2k\pi+\pi/2)=g(2k\pi+3\pi/2)=0$ 而
+均不属于 $\Omega(n)$.
+
+(5) 错误，反例： $f(n)=\begin{cases}n^{\alpha},\lfloor n\rfloor\mbox{是奇数}\\n^{\beta},\lfloor n\rfloor\mbox{是偶数}\end{cases}$，
+显然 $f(n)=\Omega(n^{\alpha})$ 且 $f(n)=O(n^{\beta})$，但 $f(n+1)=\begin{cases}n^{\beta},\lfloor n\rfloor\mbox{是奇数}\\n^{\alpha},\lfloor n\rfloor\mbox{是偶数}\end{cases}$，
+$f(n+1)\neq\Theta(f(n))$.
+
+\hrulefill\medskip
+
+\textbf{Q2.}
+
+(1) \begin{proof}
+    因为在三种情况中，总有 $A$ 的第一个参数不变大，而 $A$ 的第二个参数
+    在第一个参数不变时总会变小，保证能变到 $0$ 使得第一个参数变小，而
+    到第一个参数变小到 $0$ 时，递归就终止了，所以递归总能终止
+\end{proof}
+
+(2) \begin{proof}
+    使用数学归纳法。
+
+    首先当 $m=0$ 时，有 $A(m,n+1)=n+2>n+1=A(m,n)$ 对任意 $n$ 成立，也有
+    $A(m+1,n)=A(m,A(m+1,n-1))=A(m,\ldots,A(m,A(m+1,0))\ldots)=A(m,\ldots,A(m,A(m,1))\ldots)=A(m,\ldots,A(m,2)\ldots)=n+2>n+1=A(m,n)$ 对任意 $n$ 成立
+
+    假设当 $m\leqslant k$ 时，总有 $A(m,n+1)>A(m,n)$ 和 $A(m+1,n)>A(m,n)$ 对任意 $n$ 成立，
+
+    因为 $m\leqslant k$ 时，$A(m+1,n)>A(m,n)>A(m-1,n)>\cdots A(0,n)$，
+
+    对于 $m=k+1$，有 $A(m,n+1)=A(m-1,A(m,n))=A(k,A(m,n))>A(0,A(m,n))=A(m,n)+1>A(m,n)$；
+
+    又因为 $m\leqslant k$ 时，
+
+    则 $A(k+2,n-1)=A(k+1,\ldots,A(k+1,A(k+2,0))\ldots)=A(k+1,\ldots,A(k+1,A(k+1,1))\ldots)=A(k+1,\ldots,A(k+1,A(k,A(k+1,0)))\ldots)$
+    中有 $n+1$ 层括号，每拆掉一层递归，至少要增加 $1$，故 $A(k+2,n-1)>n$
+
+    由 $m=k+1$ 时 $A(m,n+1)>A(m,n)$，有$A(m+1,n)=A(k+2,n)=A(k+1,A(k+2,n-1))>A(k+1,n)=A(m,n)$
+\end{proof}
+
+(3)
+\begin{theorem}
+    $\alpha(x)=\omega(1)$
+\end{theorem}
+\begin{proof}
+    $\forall c>0,\exists x_0=A(c+1,c+1),\forall x\geqslant x_0,0\leqslant c<c+1=\alpha(x_0)\leqslant \alpha(x)$，
+    因此 $\alpha(x)=\omega(1)$
+\end{proof}
+\begin{theorem}
+    $\alpha(x)=O(\lg^*x)$
+\end{theorem}
+\begin{proof}
+    可以把 $A(m,n)$ 看作一个矩阵，其中第一行 $A(0,n)=n+1$，$A(m,0)=A(m-1,1)$，
+    \[A(m,n)=\underbrace{A(m-1,A(m-1,\ldots,A(m-1,}_{n\mbox{\zihao{7}层}}A(m,0))))=\underbrace{A(m-1,A(m-1,\ldots,A(m-1,}_{n\mbox{\zihao{7}层}}A(m-1,1))))\]
+    因此，有 $A(1,n)=(\ldots(A(0,1)+1)+\ldots)+1=n+2$，$A(2,n)=(\ldots(A(1,1)+2)+\ldots)+2=2n+3$，$A(3,n)=2(\ldots2(2A(2,1)+3)+\ldots)+3=2^{n+3}-3$，$A(4,n)=2^{\ldots^{2^{A(3,1)-3}-3}-3}-3$，
+    而 $\lg^*(n)$ 相当于求一个指数塔 $2^{2^{\cdots^{2}}}$ 的层数，
+    显然，$A(4,n)$ 已经和指数塔量级相同，$A(5,n)$ 会远大于它，
+    即 $n>4$ 时，\[A(n,n)\gg A(4,n)>\left.2^{2^{\cdots^2}}\right\}n\mbox{层}\]
+    因此 \[\lg^{(n)}(A(n,n))>\lg^{(n)}\left(\left.2^{2^{\cdots^2}}\right\}n\mbox{层}\right)=1\]
+    取 $n=\alpha(x)$，有 $1<\lg^{(\alpha(x))}(A(\alpha(x),A(\alpha(x))))\leqslant \lg^{(\alpha(x))}(x)$，
+    故 $0\leqslant\alpha(x)<\lg^*(x)$，因此 $\alpha(x)=O(\lg^*(x))$.
+\end{proof}
+
+\hrulefill\medskip
+
+\textbf{Q3.}
+
+(1) \textit{解.}
+
+1. $n^2=\Omega(n^{\log_{2}3+\varepsilon})$，且 $3\cdot {(n/2)}^2=3n^2/4\leqslant 7n^2/8$，故 $T(n)=\Theta(n^2)$
+
+2. $n^2=\Theta(n^{\log_{2}4})$，故 $T(n)=\Theta(n^2\lg n)$
+
+3. $2^n=\Omega(n^{\log_{2}1+\varepsilon})$，且 $2^{n/2}\leqslant 2^n/2$，故 $T(n)=\Theta(2^n)$
+
+4. $n^n=\Theta(n^{\log_{2}2^n})$，故 $T(n)=\Theta(n^n\lg n)$
+
+5. $n=O(n^{\log_{4}16-\varepsilon})$，故 $T(n)=\Theta(n^2)$
+
+6. $n\lg n=\Omega(n^{\log_{2}2}+\varepsilon)$，但不存在 $c$ 使得 $n$ 足够大时，有 $2n/2\cdot\lg(n/2)\leqslant cn\lg n$，因为 $\forall c<1$，取 $n>\frac{1}{1-c}$ 即可使得 $n\lg(n/2)>cn\lg n$，故不适用主方法
+
+7. $\frac{n}{\lg n}$ 无法与 $O(n^{\log_{2}2-\varepsilon})$ 或 $\Theta(n^{\log_{2}2})$ 比较，不适用主方法.
+
+8. $n^{0.51}=\Omega(n^{\log_{4}2}+\varepsilon)$，且 $2\cdot {(n/4)}^{0.51}\leqslant0.99n^{0.51}$，故 $T(n)=\Theta(n^{0.51})$
+
+9. $0.5<1$，故不适用主方法
+
+10. $n!=\Omega(n^{\log_{4}16+\varepsilon})$，且 $n>8$ 时 $16(n/4)!\leqslant 0.5n!$，故 $T(n)=\Theta(n!)$
+
+11. $\lg n=O(n^{\log_{2}\sqrt{2}-\varepsilon})$，故 $T(n)=\Theta(n^{0.5})$
+
+12. $n=O(n^{\log_{2}3-\varepsilon})$，故 $T(n)=\Theta(n^{\log_{3}2})$
+
+13. $\sqrt{n}=O(n^{\log_{3}3-\varepsilon})$，故 $T(n)=\Theta(n)$
+
+14. $cn=O(n^{\log_{2}4-\varepsilon})$，故 $T(n)=\Theta(n^2)$
+
+15. $n\lg n=\Omega(n^{\log_{4}3+\varepsilon})$，且 $3\cdot \frac{n}{4}\lg \frac{n}{4}\leqslant \frac{7}{8}n\lg n$，故 $T(n)=\Theta(n\lg n)$
+
+16. $\frac{n}{2}=\Theta(n^{\log_{3}3})$，故 $T(n)=\Theta(n\lg n)$
+
+17. $n^2\lg n=\Omega(n^{\log_{3}6+\varepsilon})$，且 $6\cdot{(n/3)}^2\lg (n/3)\leqslant\frac{5}{6}n^2\lg n$，故 $T(n)=\Theta(n^2\lg n)$
+
+18. $\frac{n}{\lg n}=O(n^{\log_{2}4-\varepsilon})$，故 $T(n)=\Theta(n^2)$
+
+19. $-n^2\lg n$ 不是正函数，故不适用主方法
+
+20. $n^2=\Omega(n^{\log_{3}7+\varepsilon})$，且 $7{(n/3)}^2\leqslant\frac{8}{9}n^2$，故 $T(n)=\Theta(n^{\log_{3}7})$
+
+21. $\lg n=O(n^{\log_{2}4-\varepsilon})$，故 $T(n)=\Theta(n^2)$
+
+22. $n(2-\cos n)=\Omega(n^{\log_{2}1+\varepsilon})$，但 $n=(2k+1)\pi$ 时 $(n/2)(2-\cos(n/2))=\frac{3n}{2}>cn=cn(2-\cos n)$，故不适用主方法
+
+23. $n\lg n\lg\lg n=\Omega(n^{\log_{2}2+\varepsilon})$，但 $n$ 足够大时，有 $n\lg (n/2)\lg\lg(n/2)>cn\lg n\lg\lg n$，故不适用主方法
+
+24. $n{(\lg\lg n)}^r=\Omega(n^{\log_{2}2+\varepsilon})$，且 $n$ 足够大时，但因为 $r$ 可正可负，无法比较 $2\cdot(n/2){(\lg\lg(n/2))}^r$ 与 $cn{(\lg\lg n)}^r$ 的大小，故不适用主方法
+
+25. $n\frac{{(\lg\lg\lg n)}^2}{\lg n\lg\lg n}$ 无法与 $O(n^{\log_{2}2-\varepsilon})$ 比较，故不适用主方法
+
+(2)
+
+7. $\alpha=\log_{2}2=1$，$EL^{\bf{e}}(n)=n\cdot{(\lg n)}^{-1}$，即 $\bf{e}=(1,-1)$，${\rm cord}(\bf{e})=2,{\rm cpow}(\bf{e})=0$，则有 $e_0=\alpha$ 且 ${\rm cpow}(\bf{e})>-1$，故 $T(n)=\Theta(\frac{n}{\lg n}\lg n\lg \lg n)=n\lg\lg n$
+
+23. $\alpha=\log_{2}2=1$，$EL^{\bf{e}}(n)=n\cdot\lg n\cdot\lg\lg n$，即$\bf{e}=(1,1,1)$，${\rm cord}(\bf{e})=1,{\rm cpow}(\bf{e})=1$，则有 $e_0=\alpha$ 且 ${\rm cpow}(\bf{e})>-1$，故 $T(n)=\Theta(n\lg n\lg\lg n\lg n)=\Theta(n{(\lg n)}^2(\lg\lg n))$
+
+24. $\alpha=\log_{2}2=1$，$EL^{\bf{e}}(n)=n{(\lg\lg n)}^r$，即 $\bf{e}=(1,0,r)$，${\rm cord}(\bf{e})=1,{\rm cpow}(\bf{e})=0$，则有 $e_0=\alpha$ 且 ${\rm cpow}(\bf{e})>-1$，故 $T(n)=\Theta(n{(\lg\lg n)}^r\lg n)=\Theta(n\lg n{(\lg\lg n)}^r)$
+
+25. $\alpha=\log_{2}2=1$，$EL^{\bf{e}}(n)=n\frac{{(\lg\lg\lg n)}^s}{\lg n\lg\lg n}$，即 $\bf{e}=(1,-1,-1,s)$，${\rm cord}(\bf{e})=3,{\rm cpow}(\bf{e})=s$，则若 $s>0$，有 $e_0=\alpha$ 且 ${\rm cpow}(\bf{e})>-1$，故 $T(n)=\Theta(n\frac{{(\lg\lg\lg n)}^s}{\lg n\lg\lg n}\lg n\lg\lg n\lg\lg\lg n)=\Theta(n{(\lg\lg\lg n)}^{s+1})$，若 $s\leqslant-1$，则 $T(n)=\Theta(n)$
+
+\hrulefill\medskip
+
+\textbf{Q4.}
+
+(1) \textit{解.}
+
+1. $a=\frac{|f-\frac{2n}{f}|+1}{2},b=\frac{f+\frac{2n}{f}-1}{2}$
+
+2. 如果 $a+b$ 为奇数，则 $f=a+b$，否则 $f=b-a+1$
+
+(2) \textit{解.} 正确性：将 $n$ 质因数分解，有 $n=2^{t_0}p_1^{t_1}\cdots p_s^{t_s},t_0,t_1,\ldots,t_s>0$，
+第一次循环结束的 $n=p_1^{t_1}\cdots p_s^{t_s}$，只含有奇质因子，
+接下来的循环每次选取不大于 $\sqrt{n}$ 的一个质因子，得到 $S=(t_1+1)(t_2+1)\cdots(t_r+1)$，
+如果循环到 $n=p_{s-1}p_s$，显然 $p_{s-1}^2<n$，循环不会终止，
+只有在 $p_s^2>n$ 时有最终的 $n\neq1$，
+故循环终止时有此时的 $n=1$ 或者 $n=p_s$.
+
+因此，若 $n=2^{t_0}p_1^{t_1}\cdots p_s$，$S=(t_1+1)(t_2+1)\cdots(t_{s-1}+1)\cdot 2$；
+若 $n=2^{t_0}p_1^{t_1}\cdots p_s^{t_s},t_s>1$，$S=(t_1+1)(t_2+1)\cdots(t_s+1)$.
+其实也就是 $S=(t_1+1)(t_2+1)\cdots(t_s+1)$，而这也是所有 $n$ 的奇因子数，
+由第 1 问知每一个 $n$ 的奇因子和 $S_n$ 中的一个 $\langle a,b\rangle$ 一一对应，所以
+输出的 $S$ 就是 $|S_n|$.
+
+\begin{theorem}
+    算法1的最坏时间复杂度为 $\Theta(2^{\frac{m}{2}})$
+\end{theorem}
+
+\begin{proof}
+    最坏时有输入的 $n$ 为一个 $m$ 位的二进制质数，则循环直到 $p>\sqrt{n}$
+    时才停下，而每一次循环 $p+1$，因此此时的时间复杂度为 $\Theta(\sqrt{2^m})=\Theta(2^{\frac{m}{2}})$
+
+    接下来只需证明 $n$ 不是质数时，总能使时间复杂度不高于 $\Theta(2^{\frac{m}{2}})$
+
+    当 $n$ 不是质数时，有 $n=p_1^{t_1}\cdots p_s^{t_s},t_1,\ldots,t_s>0$，
+    则总有质因子 $p_i\leqslant\sqrt{n}$，否则取最小的质因子 $p_i>\sqrt{n}$，
+    $p_i^2>n$，则不存在 $p_{i+1}$，不然 $p_i^2<p_{i}p_{i+1}\leqslant n$矛盾，
+    也就是 $p_i$ 也是最大的质因子，此时有 $n$ 为质数，矛盾，因此总能有 $p_i$
+    满足循环，使得复杂度不高于 $\Theta(2^{\frac{m}{2}})$.
+\end{proof}
+
+(3.1) 可以认为最坏时间复杂度是 $\Omega(2^{\alpha m})\cap O(2^{\beta m})$，
+但不能认为平均时间复杂度为 $\Theta(2^{\gamma m})$，因为这需要看 $L$ 的分布.
+
+(3.2) 绘图如下，最大值点为 0.33，最大值为 5.13.
+
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{Figure.png}    
+    \end{center}
+\end{figure}
+
+\end{document}
